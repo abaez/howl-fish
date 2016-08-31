@@ -43,7 +43,8 @@ howl.util.lpeg_lexer ->
   identifier = c 'identifier', ident
 
   -- Variables.
-  variable = c 'variable', (P'$' * ident) + (P'$' * span '{', '}')
+  var = P'$' * ((P'{' * ident * P'}') + ident)
+  variable = c 'variable', var
 
   -- Operators.
   operator = c 'operator', S'=!<>+-/*^&|~.,:;?()[]{}'
